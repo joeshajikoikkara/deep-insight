@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Xcode user data
+*.xcuserstate
+**/xcuserdata/
+
+# SwiftPM build artifacts
+.build/
+DerivedData/
+
+# Backend local artifacts
+backend/node_modules/
+backend/.env
+
+# App secrets / environment-specific config
+Deep Insight/GoogleService-Info.plist
+Deep Insight/client_*.plist
