@@ -58,3 +58,5 @@ Added files:
 
 - Update placeholder ARNs in `backend/ecs-taskdef.json` before first deployment.
 - Store DB and OpenAI secrets in SSM Parameter Store as referenced in task definition.
+
+CI trigger: 2026-04-17T11:42:00Z
