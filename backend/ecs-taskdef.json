@@ -4,12 +4,12 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
-  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::531361335870:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::531361335870:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "deepinsight-api",
-      "image": "123456789012.dkr.ecr.ap-south-1.amazonaws.com/deep-insight-backend:latest",
+      "image": "531361335870.dkr.ecr.ap-south-1.amazonaws.com/deep-insight-backend:latest",
       "essential": true,
       "portMappings": [
         {
@@ -25,12 +25,12 @@
         { "name": "ACTION_POINT_EDITOR_EMAILS", "value": "*" }
       ],
       "secrets": [
-        { "name": "MYSQL_HOST", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_HOST" },
-        { "name": "MYSQL_PORT", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_PORT" },
-        { "name": "MYSQL_USER", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_USER" },
-        { "name": "MYSQL_PASSWORD", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_PASSWORD" },
-        { "name": "MYSQL_DATABASE", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_DATABASE" },
-        { "name": "OPENAI_API_KEY", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/OPENAI_API_KEY" }
+        { "name": "MYSQL_HOST", "valueFrom": "arn:aws:ssm:ap-south-1:531361335870:parameter/deep-insight/MYSQL_HOST" },
+        { "name": "MYSQL_PORT", "valueFrom": "arn:aws:ssm:ap-south-1:531361335870:parameter/deep-insight/MYSQL_PORT" },
+        { "name": "MYSQL_USER", "valueFrom": "arn:aws:ssm:ap-south-1:531361335870:parameter/deep-insight/MYSQL_USER" },
+        { "name": "MYSQL_PASSWORD", "valueFrom": "arn:aws:ssm:ap-south-1:531361335870:parameter/deep-insight/MYSQL_PASSWORD" },
+        { "name": "MYSQL_DATABASE", "valueFrom": "arn:aws:ssm:ap-south-1:531361335870:parameter/deep-insight/MYSQL_DATABASE" },
+        { "name": "OPENAI_API_KEY", "valueFrom": "arn:aws:ssm:ap-south-1:531361335870:parameter/deep-insight/OPENAI_API_KEY" }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
