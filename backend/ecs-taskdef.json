@@ -1,0 +1,52 @@
+{
+  "family": "deep-insight-backend",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "deepinsight-api",
+      "image": "123456789012.dkr.ecr.ap-south-1.amazonaws.com/deep-insight-backend:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        { "name": "PORT", "value": "3000" },
+        { "name": "RESULTS_DATABASE", "value": "DI" },
+        { "name": "OPENAI_MODEL", "value": "gpt-4.1-mini" },
+        { "name": "ACTION_POINT_EDITOR_EMAILS", "value": "*" }
+      ],
+      "secrets": [
+        { "name": "MYSQL_HOST", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_HOST" },
+        { "name": "MYSQL_PORT", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_PORT" },
+        { "name": "MYSQL_USER", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_USER" },
+        { "name": "MYSQL_PASSWORD", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_PASSWORD" },
+        { "name": "MYSQL_DATABASE", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/MYSQL_DATABASE" },
+        { "name": "OPENAI_API_KEY", "valueFrom": "arn:aws:ssm:ap-south-1:123456789012:parameter/deep-insight/OPENAI_API_KEY" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/deep-insight-backend",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 20
+      }
+    }
+  ]
+}

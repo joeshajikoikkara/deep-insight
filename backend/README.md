@@ -35,3 +35,26 @@ curl -X POST http://localhost:3000/api/openai/chat \
 - The API uses a pooled MySQL connection via `mysql2/promise`.
 - Set `OPENAI_API_KEY` in `.env` for OpenAI integration.
 - Set `ACTION_POINT_EDITOR_EMAILS` in `.env` (comma-separated emails, or `*` for all) to control who can edit action points.
+
+## ECS CI/CD (GitHub Actions)
+
+Added files:
+
+- `.github/workflows/deploy-ecs.yml`
+- `backend/ecs-taskdef.json`
+- `backend/iam/github-ecs-deploy-permissions.json`
+- `backend/iam/github-oidc-trust-policy.json`
+
+### Required GitHub repo variables
+
+- `AWS_ACCOUNT_ID`
+- `GITHUB_ECS_DEPLOY_ROLE`
+- `AWS_REGION`
+- `ECR_REPOSITORY`
+- `ECS_CLUSTER`
+- `ECS_SERVICE`
+
+### Notes
+
+- Update placeholder ARNs in `backend/ecs-taskdef.json` before first deployment.
+- Store DB and OpenAI secrets in SSM Parameter Store as referenced in task definition.
